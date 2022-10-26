@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.0.32112.339
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31229.75
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{E7184C08-8409-4FDA-93AA-66AAEDE2D62E}"
 EndProject
@@ -27,7 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{BCB0305E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.Catalogo.Domain.Tests", "tests\NerdStore.Catalogo.Domain.Tests\NerdStore.Catalogo.Domain.Tests.csproj", "{40D8AB05-61EE-4B90-B872-985181C1C33A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Data", "src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj", "{3328C925-4B9E-4D78-AC20-49AF6BE68B6B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NerdStore.Catalogo.Data", "src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj", "{3328C925-4B9E-4D78-AC20-49AF6BE68B6B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Application", "src\NerdStore.Catalogo.Application\NerdStore.Catalogo.Application.csproj", "{CCE61FAF-BF48-4645-9A0F-738890F9D651}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{3328C925-4B9E-4D78-AC20-49AF6BE68B6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3328C925-4B9E-4D78-AC20-49AF6BE68B6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3328C925-4B9E-4D78-AC20-49AF6BE68B6B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCE61FAF-BF48-4645-9A0F-738890F9D651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE61FAF-BF48-4645-9A0F-738890F9D651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE61FAF-BF48-4645-9A0F-738890F9D651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE61FAF-BF48-4645-9A0F-738890F9D651}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{BCB0305E-0249-4729-AA0C-34EA216B5261} = {2A1F67CE-D42A-4E90-9D6D-FB66F99F3D60}
 		{40D8AB05-61EE-4B90-B872-985181C1C33A} = {BCB0305E-0249-4729-AA0C-34EA216B5261}
 		{3328C925-4B9E-4D78-AC20-49AF6BE68B6B} = {2A1F67CE-D42A-4E90-9D6D-FB66F99F3D60}
+		{CCE61FAF-BF48-4645-9A0F-738890F9D651} = {2A1F67CE-D42A-4E90-9D6D-FB66F99F3D60}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {91E6CC4A-4BC1-4104-AAFA-727643085B44}
