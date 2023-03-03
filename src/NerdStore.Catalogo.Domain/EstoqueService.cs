@@ -1,7 +1,7 @@
 ﻿
 
 using NerdStore.Catalogo.Domain.Events;
-using NerdStore.Core.Bus;
+using NerdStore.Core.Communication;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
 using System;
 using System.Threading.Tasks;
