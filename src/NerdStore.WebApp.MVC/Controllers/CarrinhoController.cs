@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using NerdStore.Catalogo.Application.Services;
 using NerdStore.Core.Communication;
+using NerdStore.Core.Messages.CommonMessages.Notifications;
 using NerdStore.Vendas.Application.Commands;
+using NerdStore.Vendas.Application.Queries;
 using System;
 using System.Threading.Tasks;
 
@@ -10,13 +13,19 @@ namespace NerdStore.WebApp.MVC.Controllers
     public class CarrinhoController : ControllerBase
     {
         private readonly IProdutoAppService _produtoAppService;
-        private readonly IMediatorHandler _mediatorHandler;
         
-        public CarrinhoController(IProdutoAppService produtoAppService, IMediatorHandler mediatorHandler)
+        private readonly IMediatorHandler _mediatorHandler;
+
+        public CarrinhoController(INotificationHandler<DomainNotification> notifications,
+                                  IProdutoAppService produtoAppService,
+                                  IMediatorHandler mediatorHandler
+                                  ) : base(notifications, mediatorHandler)
         {
-            _produtoAppService=produtoAppService;
-           _mediatorHandler =mediatorHandler;
+            _produtoAppService = produtoAppService;
+            _mediatorHandler = mediatorHandler;
+            
         }
+
 
         public IActionResult Index()
         {
@@ -35,10 +44,16 @@ namespace NerdStore.WebApp.MVC.Controllers
                 TempData["Erro"] = "Produto com estoque insuficiente";
                 return RedirectToAction("ProdutoDetalhe", "Vitrine", new { id });
             }
+
             var command = new AdicionarItemPedidoCommand(ClienteId, produto.Id, produto.Nome, quantidade, produto.Valor);
             await _mediatorHandler.EnviarComando(command);
 
-            TempData["Erro"] = "Produto Indisponível";
+            if (OperacaoValida())
+            {
+                return RedirectToAction("Index");
+            }
+
+            TempData["Erros"] = ObterMensagensErro();
             return RedirectToAction("ProdutoDetalhe", "Vitrine", new { id });
         }
 
