@@ -11,16 +11,17 @@ using System.Threading.Tasks;
 namespace NerdStore.Vendas.Data
 {
     public class VendasContext : DbContext, IUnitOfWork
-    {             
+    {
+        private readonly IMediatorHandler _mediatorHandler;
 
         public DbSet<Pedido> Pedidos { get; set; }
         public DbSet<PedidoItem> PedidoItems { get; set; }
         public DbSet<Voucher> Vouchers { get; set; }
 
-        public VendasContext(DbContextOptions<VendasContext> options)
+        public VendasContext(DbContextOptions<VendasContext> options, IMediatorHandler mediatorHandler)
            : base(options)
         {
-            
+            _mediatorHandler=mediatorHandler;
         }
         public async Task<bool> Commit()
         {
@@ -36,11 +37,14 @@ namespace NerdStore.Vendas.Data
                     entry.Property("DataCadastro").IsModified = false;
                 }
             }
-
-            var sucesso = await base.SaveChangesAsync() > 0;
+            
+            var sucesso= await base.SaveChangesAsync() > 0;
+            if (sucesso) await _mediatorHandler.PublicarEventos(this);
             //if (sucesso) await _mediatorHandler.PublicarEventos(this);
 
             return sucesso;
+
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
